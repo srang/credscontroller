@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ImageStream
+metadata:
+  name: vault-wrapper
+  labels:
+    app: vault-wrapper
+    group: vault
+---
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  name: vault-wrapper
+  labels:
+    app: vault-wrapper
+    group: vault
+spec:
+  source:
+    dockerfile: 'FROM vault:latest\nUSER vault'
+  strategy:
+    dockerStrategy:
+      from:
+        kind: DockerImage
+        name: vault:latest
+  output:
+    to:
+      kind: ImageStreamTag
+      name: vault-wrapper:latest
