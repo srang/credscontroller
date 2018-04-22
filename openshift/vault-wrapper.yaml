@@ -15,7 +15,9 @@ metadata:
     group: vault
 spec:
   source:
-    dockerfile: 'FROM vault:latest\nUSER vault'
+    git:
+      uri: https://github.com/srang/docker-vault.git
+    contextDir: "0.X"
   strategy:
     dockerStrategy:
       from:

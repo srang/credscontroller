@@ -59,7 +59,7 @@ spec:
           - name: JAVA_OPTIONS
             value: -Djavax.net.ssl.trustStore=/var/run/secrets/java.io/keystores/truststore.jks -Djavax.net.ssl.trustStorePassword=changeit                 
           - name: "VAULT_HOST"
-            value: "vault.vault-controller.svc"
+            value: "vault.rhat-config.svc"
           - name: "VAULT_PORT"
             value: "8200"           
           livenessProbe:

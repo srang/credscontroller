@@ -28,7 +28,6 @@ spec:
           - spring-example
         from:
           kind: ImageStreamTag
-          namespace: spring-example
           name: 'spring-example:latest'
   replicas: 1
   template:
@@ -70,11 +69,11 @@ spec:
               },                                           
               {
                 "name": "VAULT_ADDR",
-                "value": "https://vault.vault-controller.svc.cluster.local:8200"
+                "value": "https://vault.rhat-config.svc.cluster.local:8200"
               },
               {
                 "name": "VAULT_CONTROLLER_ADDR",
-                "value": "https://vault-controller.vault-controller.svc.cluster.local:8443"
+                "value": "https://vault-controller.rhat-config.svc.cluster.local:8443"
               },
               {
                 "name": "VAULT_CONTROLLER_CACERT",
@@ -100,13 +99,13 @@ spec:
     spec:
       containers:
         - name: spring-example
-          image: "spring-example/spring-example:latest"
+          image: "spring-example:latest"
           imagePullPolicy: Always
           env:
             - name: "VAULT_CACERT"
               value: "/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt"              
             - name: "VAULT_HOST"
-              value: "vault.vault-controller.svc.cluster.local"
+              value: "vault.rhat-config.svc.cluster.local"
             - name: "VAULT_PORT"
               value: "8200"
             - name: "VAULT_TOKEN_FILE"
