@@ -20,6 +20,14 @@ metadata:
     app: vault
   name: vault
 spec:
+  triggers:
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - vault
+      from:
+        kind: ImageStreamTag
+        name: vault-wrapper:latest
   replicas: 1
   template:
     metadata:
@@ -27,7 +35,7 @@ spec:
         app: vault
     spec:
       containers:
-      - image: vault:latest
+      - image: ""
         name: vault
         ports:
         - containerPort: 8200
